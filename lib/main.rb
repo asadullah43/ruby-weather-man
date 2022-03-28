@@ -14,7 +14,6 @@ def calculate_month(yearname)
   }
   months[yearname]
 end
-# puts myfun()
 input = ARGV
 input[0]
 input[2]
@@ -22,17 +21,11 @@ year = input[1].split('/')
 yearname = year[0]
 month = calculate_month(year[1])
 switch = input[0]
-
-# using case statement
 case switch
-
-# using when
 when '-e'
   obj_task_one = TaskOne.new
   obj_task_one.read_file(yearname, input[2])
-  obj_task_one.calculate_hig_temp
-  obj_task_one.calculate_lowest_temp
-  obj_task_one.calculate_most_humadity
+  obj_task_one.printing_data
 when '-a'
   obj_task_two = TaskTwo.new
   obj_task_two.read_file(yearname, month, input[2])
