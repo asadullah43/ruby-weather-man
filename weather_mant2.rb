@@ -3,11 +3,10 @@
 require 'csv'
 # class for task 2
 class TaskTwo
-  begin
-    def read_file(year, month, city)
-      @contents = CSV.parse(File.read("../#{city}/#{city}_#{year}_#{month}.txt"),
-                            headers: true, converters: :numeric)
-    rescue StandardError
+  def initialize(year, month, city)
+    begin @contents = CSV.parse(File.read("./#{city}/#{city}_#{year}_#{month}.txt"),
+                                headers: true, converters: :numeric)
+    rescue
       puts 'Data for this month not exist'
       exit(1)
     end
