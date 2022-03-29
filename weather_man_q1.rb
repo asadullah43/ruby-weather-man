@@ -3,25 +3,25 @@
 require 'csv'
 # class task one
 class TaskOne
-  @@months = {
-    '1' => 'Jan',
-    '2' => 'Feb',
-    '3' => 'Mar',
-    '4' => 'Apr',
-    '5' => 'May',
-    '6' => 'Jun',
-    '7' => 'Jul',
-    '8' => 'Aug',
-    '9' => 'Sep',
-    '10' => 'Oct',
-    '11' => 'Nov',
-    '12' => 'Dec'
-  }
   def initialize(year, city)
     @files = Dir["./#{city}/#{city}_#{year}_*"]
   end
 
   def calculate_hig_temp(name, row_num, type, print_statement, degre)
+    months = {
+      '1' => 'Jan',
+      '2' => 'Feb',
+      '3' => 'Mar',
+      '4' => 'Apr',
+      '5' => 'May',
+      '6' => 'Jun',
+      '7' => 'Jul',
+      '8' => 'Aug',
+      '9' => 'Sep',
+      '10' => 'Oct',
+      '11' => 'Nov',
+      '12' => 'Dec'
+    }
     max_temperature = []
     date_hash = {}
     @files.each do |file|
@@ -32,7 +32,7 @@ class TaskOne
     end
     remove_name = max_temperature.filter { |i| i != name }
     remove_empty = remove_name.filter { |i| i != '' }
-    element_to_integer = remove_empty.map { |i| i.to_i }
+    element_to_integer = remove_empty.map(&:to_i)
     highest_temp = if type == 'max_temp'
                      element_to_integer.max
                    elsif type == 'min_temp'
@@ -42,7 +42,7 @@ class TaskOne
                    end
     max_temp = date_hash.filter { |_key, value| value.to_i == highest_temp }
     date_max_array = max_temp.keys[0].split('-')
-    puts "#{print_statement}:#{highest_temp}#{degre} on #{@@months[date_max_array[1].to_s]} #{date_max_array[2]}"
+    puts "#{print_statement}:#{highest_temp}#{degre} on #{months[date_max_array[1].to_s]} #{date_max_array[2]}"
   end
 
   def printing_data
