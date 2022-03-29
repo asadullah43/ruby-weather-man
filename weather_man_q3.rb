@@ -10,7 +10,7 @@ class TaskThree
     begin
       @contents = CSV.parse(File.read("./#{city}/#{city}_#{year}_#{month}.txt"),
                             headers: true, converters: :numeric)
-    rescue
+    rescue StandardError
       puts 'Data for this month not exist'
       exit(1)
     end

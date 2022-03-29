@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require './weather_mant2'
-require './weather_mant1'
-require './weather_mant3'
+require './weather_man_q2'
+require './weather_man_q1'
+require './weather_man_q3'
 
 def month_hash(year_number)
   months = {
