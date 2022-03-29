@@ -4,12 +4,8 @@ require 'csv'
 # class for task 2
 class TaskTwo
   def initialize(year, month, city)
-    begin @contents = CSV.parse(File.read("./#{city}/#{city}_#{year}_#{month}.txt"),
+    @contents = CSV.parse(File.read("./#{city}/#{city}_#{year}_#{month}.txt"),
                                 headers: true, converters: :numeric)
-    rescue StandardError
-      puts 'Data for this month not exist'
-      exit(1)
-    end
 
     def calculate_avg(value)
       length = @contents.by_col[value].length

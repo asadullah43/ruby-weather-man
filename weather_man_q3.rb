@@ -7,13 +7,9 @@ class TaskThree
   def initialize(year, month, city)
     @year = year
     @month = month
-    begin
       @contents = CSV.parse(File.read("./#{city}/#{city}_#{year}_#{month}.txt"),
                             headers: true, converters: :numeric)
-    rescue StandardError
-      puts 'Data for this month not exist'
-      exit(1)
-    end
+  end
 
     def barchart_temp(question_num)
       puts "#{@month} #{@year}"
@@ -31,5 +27,4 @@ class TaskThree
         end
       end
     end
-  end
 end
