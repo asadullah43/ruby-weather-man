@@ -25,15 +25,14 @@ class TaskOne
     max_temperature = []
     date_hash = {}
     @files.each do |file|
-      File.read(file)
       File.readlines(file).each do |line|
         max_temperature << line.split(',')[row_num]
         date_hash[line.split(',')[0]] = line.split(',')[row_num]
       end
     end
     remove_name = max_temperature.filter { |i| i != name }
-    remove_nil = remove_name.filter { |i| i != '' }
-    element_to_integer = remove_nil.map { |i| i.to_i }
+    remove_empty = remove_name.filter { |i| i != '' }
+    element_to_integer = remove_empty.map { |i| i.to_i }
     highest_temp = if type == 'max_temp'
                      element_to_integer.max
                    elsif type == 'min_temp'
